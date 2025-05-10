@@ -18,9 +18,21 @@ public class JogoMinecraft {
                     jogador.construir();
                     break;
             }
+
+            var dano = gerador.nextInt(4);
+            if(dano == 0){
+                jogador.levarDano();
+                if (jogador.estaVivo() == false){
+                    break;
+                }
+            }
+
             System.out.println(jogador);
             System.out.println("============");
             Thread.sleep(5000);
         }
+        System.out.println("============");
+        System.out.println("GAME OVER");
+        System.out.println("============");
     }
 }
