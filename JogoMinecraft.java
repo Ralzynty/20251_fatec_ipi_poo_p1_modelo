@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class JogoMinecraft {
+public class JogoMinecraft{
     public static void main(String[] args) throws Exception{
         var gerador = new Random();
         var jogador1 = new JogadorMinecraft("Alex");
@@ -57,11 +57,26 @@ public class JogoMinecraft {
                 System.out.println("Steve Construtor morreu!");
             }
 
+            if (jogador1.estaVivo() && jogador2.estaVivo()) {
+                if (gerador.nextBoolean()) {
+                    System.out.println("Alex Atacou Steve Construtor!");
+                    jogador2.levarDano();
+                } else {
+                    System.out.println("Steve Construtor Atacou Alex!");
+                    jogador1.levarDano();
+                       }
+
+                       if (!jogador1.estaVivo() || !jogador2.estaVivo()) {
+                    String vencedor = jogador1.estaVivo() ? "Alex" : "Steve Construtor";
+                    System.out.println( ">>" + vencedor + " VENCEU!!!<<");
+                }
+            }
+
             if (jogador1.estaVivo() == false && jogador2.estaVivo() == false){
                 System.out.println("============");
                 System.out.println("GAME OVER");
             }
-
+            
             System.out.println("============");
             Thread.sleep(5000);
         }
