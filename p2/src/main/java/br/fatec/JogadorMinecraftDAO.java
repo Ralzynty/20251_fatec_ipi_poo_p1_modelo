@@ -23,7 +23,20 @@ public class JogadorMinecraftDAO {
                 var jogador = new JogadorMinecraft(codigo, nome, probConstruir, probColetarMadeira, probMinerar, vitorias, derrotas);
                 jogadores.add(jogador);
             }
+            return jogadores;
         }
-        return jogadores;
+    }
+    public void atualizar(JogadorMinecraft jogador) throws Exception{
+        var sql = "UPDATE tb_personagens SET vitorias = ?, derrotas = ? WHERE codigo = ?";
+
+        try(
+            var conexao = ConnectionFactory.obterConexao();
+            var ps = conexao.prepareStatement(sql);
+        ){
+            ps.setInt(1, jogador.getVitorias());
+            ps.setInt(2, jogador.getDerrotas());
+            ps.setInt(3, jogador.getCodigo());
+            ps.execute();
+        }
     }
 }
