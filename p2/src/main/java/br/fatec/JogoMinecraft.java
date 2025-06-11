@@ -22,6 +22,17 @@ public class JogoMinecraft{
 
 		        var tomarDano = rand.nextDouble();
                 if(tomarDano <= 0.25) jogadores.get(0).levarDano();
+
+                jogadores.get(0).setProbConstruir(rand.nextFloat());
+                jogadores.get(0).setProbColetarMadeira(rand.nextFloat());
+                jogadores.get(0).setProbMinerar(rand.nextFloat());
+
+                try {
+                    dao.atualizar(jogadores.get(0));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Sistema Indisponível");
+                }
             }
             if(jogadores.get(1).estaVivo())
             {
@@ -32,6 +43,17 @@ public class JogoMinecraft{
 
                 var tomarDano = rand.nextDouble();
                 if(tomarDano <= 0.25) jogadores.get(1).levarDano();
+
+                jogadores.get(1).setProbConstruir(rand.nextFloat());
+                jogadores.get(1).setProbColetarMadeira(rand.nextFloat());
+                jogadores.get(1).setProbMinerar(rand.nextFloat());
+
+                try {
+                    dao.atualizar(jogadores.get(1));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Sistema Indisponível");
+                }
             }    
 
             var chanceAtaque = rand.nextDouble();
@@ -79,6 +101,7 @@ public class JogoMinecraft{
             {
                 System.out.println("============");
                 System.out.println("GAME OVER");
+                break;
             }
 
             System.out.println("============");

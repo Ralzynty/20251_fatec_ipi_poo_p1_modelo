@@ -27,7 +27,7 @@ public class JogadorMinecraftDAO {
         }
     }
     public void atualizar(JogadorMinecraft jogador) throws Exception{
-        var sql = "UPDATE tb_personagens SET vitorias = ?, derrotas = ? WHERE codigo = ?";
+        var sql = "UPDATE tb_personagens SET vitorias = ?, derrotas = ?, prob_construir = ?, prob_coletar_madeira = ?, prob_minerar = ? WHERE codigo = ?";
 
         try(
             var conexao = ConnectionFactory.obterConexao();
@@ -35,7 +35,10 @@ public class JogadorMinecraftDAO {
         ){
             ps.setInt(1, jogador.getVitorias());
             ps.setInt(2, jogador.getDerrotas());
-            ps.setInt(3, jogador.getCodigo());
+            ps.setFloat(3, jogador.getProbConstruir());
+            ps.setFloat(4, jogador.getProbColetarMadeira());
+            ps.setFloat(5, jogador.getProbMinerar());
+            ps.setInt(6, jogador.getCodigo());
             ps.execute();
         }
     }
